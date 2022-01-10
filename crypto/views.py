@@ -17,21 +17,22 @@ def home(request):
 
     headers = {
         'Accepts': 'application/json',
-        'X-CMC_PRO_API_KEY': api_key
+        'X-CMC_PRO_API_KEY': '64cd695d-26ab-4937-b788-14b86a0db2f8'
     }
 
     session = Session()
     session.headers.update(headers)
 
-    try:
-        response = session.get(url, params=parameters)
-        crypto_data = json.loads(response.text)
-        #   print(crypto_data, type(crypto_data))
+    # try:
+    response = session.get(url, params=parameters)
+    crypto_data = json.loads(response.text)
+    print("Yoooooo")
+    print(crypto_data, type(crypto_data))
 
-    except (ConnectionError, Timeout, TooManyRedirects) as e:
-        print(e)
+    # except (ConnectionError, Timeout, TooManyRedirects) as e:
+    #     print(e)
     
     context = {
-
+        'crypto_data' : crypto_data
     }
     return render(request, 'home.html', context)
